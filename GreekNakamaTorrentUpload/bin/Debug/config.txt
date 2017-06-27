@@ -1,0 +1,9 @@
+# This is a Comment.
+# If you want to use another credetials please sure that you have the same file with this.
+# Your string must have the same length because the program read for this file line by line and skip 10 characters before start to read. 
+
+Server Name   = 'localhost'
+Username      = 'root'
+Passwrod      = ''
+Port          = '3306'
+Database Name = 'download'
