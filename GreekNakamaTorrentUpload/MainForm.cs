@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GreekNakamaTorrentUpload.WinClass;
 using System.Data.Odbc;
+using GreekNakamaTorrentUpload.WinClass.Helper;
+using GreekNakamaTorrentUpload.WinForms.Settings;
 
 namespace GreekNakamaTorrentUpload
 {
@@ -17,6 +14,10 @@ namespace GreekNakamaTorrentUpload
         List<AnimeList> _animeList;
         OdbcCommand cmd = new OdbcCommand();
         OdbcDataReader reader;
+
+        //Simple Vars
+        string WebImageFolder;
+
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace GreekNakamaTorrentUpload
             DB.InitializeCredetials();
             txt_CurrentCred.Text = DB.PrintCredetials();
             DB.Connect();
+
             if (DB.Cn.State == ConnectionState.Open)
             {
                 this.Text = "Greek-Nakama Torrent Upload - Connected";
@@ -32,12 +34,21 @@ namespace GreekNakamaTorrentUpload
             {
                 this.Text = "Greek-Nakama Torrent Upload - Disconnected";
             }
+
             cmd.Connection = DB.Cn;
             Init();
         }
 
         private void Init()
         {
+            WebImageFolder = Helper.LoadFromJson();
+            if (WebImageFolder == "0x01")
+            {
+                MessageBox.Show("We can't find the settings file.\nPlease set your settings before use the app.", "Error while load file...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                frmSettings frmSettings = new frmSettings();
+                frmSettings.ShowDialog();
+            }
+
             fillList();
             loadComboBox(cbx_AnimeList);
         }
@@ -76,6 +87,17 @@ namespace GreekNakamaTorrentUpload
         {
             lbl_originalname.Text = _animeList[cbx_AnimeList.SelectedIndex].AnimeName;
             lbl_slug.Text = _animeList[cbx_AnimeList.SelectedIndex].AnimeSlug;
+        }
+
+        private void brn_browse_Click(object sender, EventArgs e)
+        {
+            Helper.BrowseFiles(this.txt_torrentFile, this.lbl_selectedTorrentName);
+        }
+
+        private void btn_settings_Click(object sender, EventArgs e)
+        {
+            frmSettings frmSettings = new frmSettings();
+            frmSettings.ShowDialog();
         }
     }
 }
