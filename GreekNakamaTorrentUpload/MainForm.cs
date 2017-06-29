@@ -58,7 +58,7 @@ namespace GreekNakamaTorrentUpload
             }
             catch (Exception)
             {
-                MessageBox.Show("Can't load the list");
+                MessageBox.Show("We can't load the list. Please restart the program. If problem exist. Please contact with Administrator: support@greek-nakama.com", "Can't load list...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
