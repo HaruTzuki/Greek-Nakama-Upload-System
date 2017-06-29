@@ -49,8 +49,19 @@ namespace GreekNakamaTorrentUpload.WinClass
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Can't connect to database. Please check the credentials or Network Administrator", "Can't Connect...", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        static public void Disconnect()
+        {
+            try
+            {
+                if (Cn == null) return;
+                if (Cn.State == ConnectionState.Closed) return;
+                Cn.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         static public void InitializeCredetials()
         {
@@ -90,11 +101,11 @@ namespace GreekNakamaTorrentUpload.WinClass
 
         static public string PrintCredetials()
         {
-            return 
-                "Server Name : " + _serverName + Environment.NewLine + 
-                "Username : " + _usernamer + Environment.NewLine + 
-                "Password : " + _password + Environment.NewLine + 
-                "Port : " + _port + Environment.NewLine + 
+            return
+                "Server Name : " + _serverName + Environment.NewLine +
+                "Username : " + _usernamer + Environment.NewLine +
+                "Password : " + _password + Environment.NewLine +
+                "Port : " + _port + Environment.NewLine +
                 "Database : " + _databaseName;
         }
 
