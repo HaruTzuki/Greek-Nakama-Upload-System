@@ -38,15 +38,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_CurrentCred = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txt_torrentFile = new System.Windows.Forms.TextBox();
-            this.brn_browse = new System.Windows.Forms.Button();
-            this.lbl_selectedTorrentName = new System.Windows.Forms.Label();
-            this.lbl_name = new System.Windows.Forms.Label();
-            this.txt_name = new System.Windows.Forms.TextBox();
             this.lbl_torrent = new System.Windows.Forms.Label();
+            this.txt_name = new System.Windows.Forms.TextBox();
+            this.lbl_name = new System.Windows.Forms.Label();
+            this.lbl_selectedTorrentName = new System.Windows.Forms.Label();
+            this.brn_browse = new System.Windows.Forms.Button();
+            this.txt_torrentFile = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_upload = new System.Windows.Forms.Button();
             this.TipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.btn_help = new System.Windows.Forms.Button();
+            this.btn_settings = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -99,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 69);
+            this.label2.Location = new System.Drawing.Point(3, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 2;
@@ -108,7 +110,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 43);
+            this.label1.Location = new System.Drawing.Point(3, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 1;
@@ -151,23 +153,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Browse Torrent File && Name:";
             // 
-            // txt_torrentFile
+            // lbl_torrent
             // 
-            this.txt_torrentFile.Location = new System.Drawing.Point(6, 87);
-            this.txt_torrentFile.Name = "txt_torrentFile";
-            this.txt_torrentFile.Size = new System.Drawing.Size(451, 20);
-            this.txt_torrentFile.TabIndex = 2;
-            this.TipHelp.SetToolTip(this.txt_torrentFile, "The uploaded torrent file.");
+            this.lbl_torrent.AutoSize = true;
+            this.lbl_torrent.Location = new System.Drawing.Point(3, 71);
+            this.lbl_torrent.Name = "lbl_torrent";
+            this.lbl_torrent.Size = new System.Drawing.Size(44, 13);
+            this.lbl_torrent.TabIndex = 5;
+            this.lbl_torrent.Text = "Torrent:";
             // 
-            // brn_browse
+            // txt_name
             // 
-            this.brn_browse.Location = new System.Drawing.Point(382, 113);
-            this.brn_browse.Name = "brn_browse";
-            this.brn_browse.Size = new System.Drawing.Size(75, 23);
-            this.brn_browse.TabIndex = 3;
-            this.brn_browse.Text = "Browse...";
-            this.TipHelp.SetToolTip(this.brn_browse, "Browse the files to find torrent.");
-            this.brn_browse.UseVisualStyleBackColor = true;
+            this.txt_name.Location = new System.Drawing.Point(6, 32);
+            this.txt_name.Name = "txt_name";
+            this.txt_name.Size = new System.Drawing.Size(451, 20);
+            this.txt_name.TabIndex = 1;
+            this.TipHelp.SetToolTip(this.txt_name, "The name that will appear on the page.");
+            // 
+            // lbl_name
+            // 
+            this.lbl_name.AutoSize = true;
+            this.lbl_name.Location = new System.Drawing.Point(3, 16);
+            this.lbl_name.Name = "lbl_name";
+            this.lbl_name.Size = new System.Drawing.Size(38, 13);
+            this.lbl_name.TabIndex = 3;
+            this.lbl_name.Text = "Name:";
             // 
             // lbl_selectedTorrentName
             // 
@@ -179,45 +189,38 @@
             this.lbl_selectedTorrentName.Text = "File Name:";
             this.TipHelp.SetToolTip(this.lbl_selectedTorrentName, "Torrent file name.");
             // 
-            // lbl_name
+            // brn_browse
             // 
-            this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(6, 16);
-            this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(38, 13);
-            this.lbl_name.TabIndex = 3;
-            this.lbl_name.Text = "Name:";
+            this.brn_browse.Location = new System.Drawing.Point(382, 113);
+            this.brn_browse.Name = "brn_browse";
+            this.brn_browse.Size = new System.Drawing.Size(75, 23);
+            this.brn_browse.TabIndex = 3;
+            this.brn_browse.Text = "Browse...";
+            this.TipHelp.SetToolTip(this.brn_browse, "Browse the files to find torrent.");
+            this.brn_browse.UseVisualStyleBackColor = true;
+            this.brn_browse.Click += new System.EventHandler(this.brn_browse_Click);
             // 
-            // txt_name
+            // txt_torrentFile
             // 
-            this.txt_name.Location = new System.Drawing.Point(6, 32);
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(451, 20);
-            this.txt_name.TabIndex = 1;
-            this.TipHelp.SetToolTip(this.txt_name, "The name that will appear on the page.");
-            // 
-            // lbl_torrent
-            // 
-            this.lbl_torrent.AutoSize = true;
-            this.lbl_torrent.Location = new System.Drawing.Point(6, 71);
-            this.lbl_torrent.Name = "lbl_torrent";
-            this.lbl_torrent.Size = new System.Drawing.Size(44, 13);
-            this.lbl_torrent.TabIndex = 5;
-            this.lbl_torrent.Text = "Torrent:";
+            this.txt_torrentFile.Location = new System.Drawing.Point(6, 87);
+            this.txt_torrentFile.Name = "txt_torrentFile";
+            this.txt_torrentFile.Size = new System.Drawing.Size(451, 20);
+            this.txt_torrentFile.TabIndex = 2;
+            this.TipHelp.SetToolTip(this.txt_torrentFile, "The uploaded torrent file.");
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btn_upload);
             this.groupBox3.Location = new System.Drawing.Point(484, 125);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(299, 150);
+            this.groupBox3.Size = new System.Drawing.Size(299, 100);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Upload";
             // 
             // btn_upload
             // 
-            this.btn_upload.Location = new System.Drawing.Point(117, 44);
+            this.btn_upload.Location = new System.Drawing.Point(108, 25);
             this.btn_upload.Name = "btn_upload";
             this.btn_upload.Size = new System.Drawing.Size(92, 52);
             this.btn_upload.TabIndex = 4;
@@ -225,11 +228,34 @@
             this.TipHelp.SetToolTip(this.btn_upload, "Upload the current torrent");
             this.btn_upload.UseVisualStyleBackColor = true;
             // 
+            // btn_help
+            // 
+            this.btn_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_help.Location = new System.Drawing.Point(685, 231);
+            this.btn_help.Name = "btn_help";
+            this.btn_help.Size = new System.Drawing.Size(46, 44);
+            this.btn_help.TabIndex = 5;
+            this.TipHelp.SetToolTip(this.btn_help, "Help for program");
+            this.btn_help.UseVisualStyleBackColor = true;
+            // 
+            // btn_settings
+            // 
+            this.btn_settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_settings.Location = new System.Drawing.Point(737, 231);
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.Size = new System.Drawing.Size(46, 44);
+            this.btn_settings.TabIndex = 6;
+            this.TipHelp.SetToolTip(this.btn_settings, "Settings");
+            this.btn_settings.UseVisualStyleBackColor = true;
+            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 296);
+            this.Controls.Add(this.btn_help);
+            this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txt_CurrentCred);
@@ -268,6 +294,8 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btn_upload;
         private System.Windows.Forms.ToolTip TipHelp;
+        private System.Windows.Forms.Button btn_settings;
+        private System.Windows.Forms.Button btn_help;
     }
 }
 
