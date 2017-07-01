@@ -1,13 +1,14 @@
 ﻿using GreekNakamaTorrentUpload.WinClass.Helper;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GreekNakamaTorrentUpload.WinForms.Settings
 {
     public partial class frmSettings : Form
     {
-        string internetPath;
+        Credentials _cred;
         Timer checkIfProcessExited;
         Process p;
 
@@ -15,6 +16,7 @@ namespace GreekNakamaTorrentUpload.WinForms.Settings
         public frmSettings()
         {
             InitializeComponent();
+            _cred = new Credentials();
             checkIfProcessExited = new Timer();
             checkIfProcessExited.Interval = 100; //100 ms
             checkIfProcessExited.Tick += CheckIfProcessExited_Tick;
@@ -48,8 +50,17 @@ namespace GreekNakamaTorrentUpload.WinForms.Settings
 
         private void btn_apply_Click(object sender, EventArgs e)
         {
-            internetPath = text_webImageFolder.Text;
-            Helper.SaveToJson(internetPath);
+            if (File.Exists("settings.json"))
+            {
+                File.Delete("settings.json");
+            }
+
+            _cred.WebImageFolder = text_webImageFolder.Text;
+            _cred.FTPServer = txtServer.Text;
+            _cred.FTPUsername = txtUsername.Text;
+            _cred.FTPPassword = txtPassword.Text;
+
+            Helper.SaveToJson(_cred);
             MessageBox.Show("Settings has changed. We restart the Application. See you!", "Perfect...", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Application.Restart();
         }
@@ -65,9 +76,19 @@ namespace GreekNakamaTorrentUpload.WinForms.Settings
 
         private void frmSettings_Load(object sender, EventArgs e)
         {
-            internetPath = Helper.LoadFromJson();
-            if (internetPath == "0x01") return;
-            text_webImageFolder.Text = internetPath;
+            try
+            {
+                _cred = Helper.LoadFromJson();
+                text_webImageFolder.Text = _cred.WebImageFolder;
+                txtUsername.Text = _cred.FTPUsername;
+                txtServer.Text = _cred.FTPServer;
+                txtPassword.Text = _cred.FTPPassword;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+
 
         }
     }
