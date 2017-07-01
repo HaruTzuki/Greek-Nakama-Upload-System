@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GreekNakamaTorrentUpload.WinClass.Helper
 {
     static class Helper
     {
+
+        static public Exception LoadedError = new Exception("Error while load the file. Error code: 0x01.");
+
         static public void BrowseFiles(TextBox txt_torrent, Label lbl_file)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -22,7 +21,7 @@ namespace GreekNakamaTorrentUpload.WinClass.Helper
                 if (DL == DialogResult.OK)
                 {
                     txt_torrent.Text = ofd.FileName;
-                    lbl_file.Text = "File Name : " + ofd.SafeFileName;
+                    lbl_file.Text = ofd.SafeFileName;
                 }
 
             }
@@ -35,24 +34,16 @@ namespace GreekNakamaTorrentUpload.WinClass.Helper
             File.WriteAllText("settings.json", contentForSave);
         }
 
-        static public void SaveToJson(string[] contents)
+        static public void SaveToJson(Credentials credentials)
         {
-            string contentForSave = JsonConvert.SerializeObject(contents.ToArray(), Formatting.Indented);
+            string contentForSave = JsonConvert.SerializeObject(credentials, Formatting.Indented);
             File.WriteAllText("settings.json", contentForSave);
         }
 
-        static public string LoadFromJson()
+        static public Credentials LoadFromJson()
         {
-            string loadedContents;
-            try
-            {
-                loadedContents = JsonConvert.DeserializeObject<string>(System.IO.File.ReadAllText("settings.json"));
-            }
-            catch (Exception)
-            {
-                return "0x01";
-            }
-
+            Credentials loadedContents;
+            loadedContents = JsonConvert.DeserializeObject<Credentials>(System.IO.File.ReadAllText("settings.json"));
             return loadedContents;
         }
     }
