@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinClass\AnimeList.cs" />
     <Compile Include="WinClass\DB.cs" />
+    <Compile Include="WinClass\Helper\Credentials.cs" />
     <Compile Include="WinClass\Helper\Helper.cs" />
     <Compile Include="WinClass\Queries.cs" />
     <Compile Include="WinForms\Settings\frmSettings.cs">
