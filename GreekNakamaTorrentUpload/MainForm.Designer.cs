@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_CurrentCred = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.lbl_torrent = new System.Windows.Forms.Label();
             this.txt_name = new System.Windows.Forms.TextBox();
             this.lbl_name = new System.Windows.Forms.Label();
@@ -49,9 +50,13 @@
             this.TipHelp = new System.Windows.Forms.ToolTip(this.components);
             this.btn_help = new System.Windows.Forms.Button();
             this.btn_settings = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chb_today = new System.Windows.Forms.CheckBox();
+            this.dtp_uploadDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbx_AnimeList
@@ -73,7 +78,7 @@
             this.groupBox1.Controls.Add(this.cbx_AnimeList);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(463, 100);
+            this.groupBox1.Size = new System.Drawing.Size(254, 100);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Anime List";
@@ -140,6 +145,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.lbl_torrent);
             this.groupBox2.Controls.Add(this.txt_name);
             this.groupBox2.Controls.Add(this.lbl_name);
@@ -152,6 +158,15 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Browse Torrent File && Name:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 135);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "File Name: ";
             // 
             // lbl_torrent
             // 
@@ -182,11 +197,10 @@
             // lbl_selectedTorrentName
             // 
             this.lbl_selectedTorrentName.AutoSize = true;
-            this.lbl_selectedTorrentName.Location = new System.Drawing.Point(6, 136);
+            this.lbl_selectedTorrentName.Location = new System.Drawing.Point(76, 135);
             this.lbl_selectedTorrentName.Name = "lbl_selectedTorrentName";
-            this.lbl_selectedTorrentName.Size = new System.Drawing.Size(57, 13);
+            this.lbl_selectedTorrentName.Size = new System.Drawing.Size(0, 13);
             this.lbl_selectedTorrentName.TabIndex = 2;
-            this.lbl_selectedTorrentName.Text = "File Name:";
             this.TipHelp.SetToolTip(this.lbl_selectedTorrentName, "Torrent file name.");
             // 
             // brn_browse
@@ -227,9 +241,11 @@
             this.btn_upload.Text = "Upload";
             this.TipHelp.SetToolTip(this.btn_upload, "Upload the current torrent");
             this.btn_upload.UseVisualStyleBackColor = true;
+            this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
             // 
             // btn_help
             // 
+            this.btn_help.BackgroundImage = global::GreekNakamaTorrentUpload.Properties.Resources.Faq_icon;
             this.btn_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_help.Location = new System.Drawing.Point(685, 231);
             this.btn_help.Name = "btn_help";
@@ -240,6 +256,7 @@
             // 
             // btn_settings
             // 
+            this.btn_settings.BackgroundImage = global::GreekNakamaTorrentUpload.Properties.Resources.settings_icon;
             this.btn_settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_settings.Location = new System.Drawing.Point(737, 231);
             this.btn_settings.Name = "btn_settings";
@@ -249,11 +266,46 @@
             this.btn_settings.UseVisualStyleBackColor = true;
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chb_today);
+            this.groupBox4.Controls.Add(this.dtp_uploadDate);
+            this.groupBox4.Location = new System.Drawing.Point(275, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(200, 100);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Date:";
+            // 
+            // chb_today
+            // 
+            this.chb_today.AutoSize = true;
+            this.chb_today.Checked = true;
+            this.chb_today.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chb_today.Location = new System.Drawing.Point(67, 50);
+            this.chb_today.Name = "chb_today";
+            this.chb_today.Size = new System.Drawing.Size(56, 17);
+            this.chb_today.TabIndex = 1;
+            this.chb_today.Text = "Today";
+            this.chb_today.UseVisualStyleBackColor = true;
+            this.chb_today.CheckedChanged += new System.EventHandler(this.chb_today_CheckedChanged);
+            // 
+            // dtp_uploadDate
+            // 
+            this.dtp_uploadDate.CustomFormat = "dd/MM/yyyy";
+            this.dtp_uploadDate.Enabled = false;
+            this.dtp_uploadDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp_uploadDate.Location = new System.Drawing.Point(45, 20);
+            this.dtp_uploadDate.Name = "dtp_uploadDate";
+            this.dtp_uploadDate.Size = new System.Drawing.Size(111, 20);
+            this.dtp_uploadDate.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 296);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btn_help);
             this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.groupBox3);
@@ -269,6 +321,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,6 +350,10 @@
         private System.Windows.Forms.ToolTip TipHelp;
         private System.Windows.Forms.Button btn_settings;
         private System.Windows.Forms.Button btn_help;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chb_today;
+        private System.Windows.Forms.DateTimePicker dtp_uploadDate;
+        private System.Windows.Forms.Label label4;
     }
 }
 

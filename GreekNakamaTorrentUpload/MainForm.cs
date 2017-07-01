@@ -14,13 +14,21 @@ namespace GreekNakamaTorrentUpload
         List<AnimeList> _animeList;
         OdbcCommand cmd = new OdbcCommand();
         OdbcDataReader reader;
+        Credentials _cred;
+        Upload _upload;
 
         //Simple Vars
         string WebImageFolder;
+        string _ftpUsername;
+        string _ftpPassword;
+        string _ftpPath;
+        //---
+        string _uploadDate;
 
         public MainForm()
         {
             InitializeComponent();
+            _cred = new Credentials();
             _animeList = new List<AnimeList>();
             DB.InitializeCredetials();
             txt_CurrentCred.Text = DB.PrintCredetials();
@@ -41,9 +49,17 @@ namespace GreekNakamaTorrentUpload
 
         private void Init()
         {
-            WebImageFolder = Helper.LoadFromJson();
-            if (WebImageFolder == "0x01")
+            try
             {
+                _cred = Helper.LoadFromJson();
+                WebImageFolder = _cred.WebImageFolder;
+                _ftpPath = _cred.FTPServer;
+                _ftpUsername = _cred.FTPUsername;
+                _ftpPassword = _cred.FTPPassword;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
                 MessageBox.Show("We can't find the settings file.\nPlease set your settings before use the app.", "Error while load file...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 frmSettings frmSettings = new frmSettings();
                 frmSettings.ShowDialog();
@@ -52,6 +68,8 @@ namespace GreekNakamaTorrentUpload
             fillList();
             loadComboBox(cbx_AnimeList);
         }
+
+
 
         private void fillList()
         {
@@ -71,6 +89,7 @@ namespace GreekNakamaTorrentUpload
             {
                 MessageBox.Show("We can't load the list. Please restart the program. If problem exist. Please contact with Administrator: support@greek-nakama.com", "Can't load list...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            reader?.Close();
         }
 
         private void loadComboBox(ComboBox cbx_AnimeList)
@@ -98,6 +117,41 @@ namespace GreekNakamaTorrentUpload
         {
             frmSettings frmSettings = new frmSettings();
             frmSettings.ShowDialog();
+        }
+
+        private void btn_upload_Click(object sender, EventArgs e)
+        {
+            if (chb_today.Checked)
+            {
+                _uploadDate = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                _uploadDate = dtp_uploadDate.Value.ToString("yyyy-MM-dd");
+            }
+
+            try
+            {
+
+                _upload = new Upload(_ftpUsername, _ftpPassword, _ftpPath);
+                _upload.StartUploading(txt_torrentFile.Text, lbl_selectedTorrentName.Text);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something goes wrong. Please check the file or you Credentials or Internet Connection.", "Error...", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+
+            cmd.CommandText = Queries.InsertToDatabase(txt_name.Text, @"http://greek-nakama.com/blog/torrents/files/" + lbl_selectedTorrentName.Text, WebImageFolder + "" + lbl_slug.Text + ".png", _uploadDate);
+            cmd.ExecuteNonQuery();
+
+            MessageBox.Show("You have succefull complete the Operation.", "Complete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void chb_today_CheckedChanged(object sender, EventArgs e)
+        {
+            dtp_uploadDate.Enabled = !dtp_uploadDate.Enabled;
         }
     }
 }
