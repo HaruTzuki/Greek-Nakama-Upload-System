@@ -62,6 +62,7 @@
     <Compile Include="WinClass\DB.cs" />
     <Compile Include="WinClass\Helper\Credentials.cs" />
     <Compile Include="WinClass\Helper\Helper.cs" />
+    <Compile Include="WinClass\Helper\Upload.cs" />
     <Compile Include="WinClass\Queries.cs" />
     <Compile Include="WinForms\Settings\frmSettings.cs">
       <SubType>Form</SubType>
