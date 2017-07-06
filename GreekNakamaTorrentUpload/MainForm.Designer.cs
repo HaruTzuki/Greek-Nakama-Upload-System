@@ -49,11 +49,11 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_upload = new System.Windows.Forms.Button();
             this.TipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.btn_help = new System.Windows.Forms.Button();
-            this.btn_settings = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chb_today = new System.Windows.Forms.CheckBox();
             this.dtp_uploadDate = new System.Windows.Forms.DateTimePicker();
+            this.btn_help = new System.Windows.Forms.Button();
+            this.btn_settings = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -244,29 +244,6 @@
             this.btn_upload.UseVisualStyleBackColor = true;
             this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
             // 
-            // btn_help
-            // 
-            this.btn_help.BackgroundImage = global::GreekNakamaTorrentUpload.Properties.Resources.Faq_icon;
-            this.btn_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_help.Location = new System.Drawing.Point(685, 231);
-            this.btn_help.Name = "btn_help";
-            this.btn_help.Size = new System.Drawing.Size(46, 44);
-            this.btn_help.TabIndex = 5;
-            this.TipHelp.SetToolTip(this.btn_help, "Help for program");
-            this.btn_help.UseVisualStyleBackColor = true;
-            // 
-            // btn_settings
-            // 
-            this.btn_settings.BackgroundImage = global::GreekNakamaTorrentUpload.Properties.Resources.settings_icon;
-            this.btn_settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_settings.Location = new System.Drawing.Point(737, 231);
-            this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(46, 44);
-            this.btn_settings.TabIndex = 6;
-            this.TipHelp.SetToolTip(this.btn_settings, "Settings");
-            this.btn_settings.UseVisualStyleBackColor = true;
-            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.chb_today);
@@ -300,6 +277,30 @@
             this.dtp_uploadDate.Name = "dtp_uploadDate";
             this.dtp_uploadDate.Size = new System.Drawing.Size(111, 20);
             this.dtp_uploadDate.TabIndex = 0;
+            // 
+            // btn_help
+            // 
+            this.btn_help.BackgroundImage = global::GreekNakamaTorrentUpload.Properties.Resources.Faq_icon;
+            this.btn_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_help.Location = new System.Drawing.Point(685, 231);
+            this.btn_help.Name = "btn_help";
+            this.btn_help.Size = new System.Drawing.Size(46, 44);
+            this.btn_help.TabIndex = 5;
+            this.TipHelp.SetToolTip(this.btn_help, "Help for program");
+            this.btn_help.UseVisualStyleBackColor = true;
+            this.btn_help.Visible = false;
+            // 
+            // btn_settings
+            // 
+            this.btn_settings.BackgroundImage = global::GreekNakamaTorrentUpload.Properties.Resources.settings_icon;
+            this.btn_settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_settings.Location = new System.Drawing.Point(737, 231);
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.Size = new System.Drawing.Size(46, 44);
+            this.btn_settings.TabIndex = 6;
+            this.TipHelp.SetToolTip(this.btn_settings, "Settings");
+            this.btn_settings.UseVisualStyleBackColor = true;
+            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
             // 
             // MainForm
             // 
