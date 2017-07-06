@@ -10,3 +10,4 @@ C:\Users\HaruTzuki\documents\visual studio 2015\Projects\GreekNakamaTorrentUploa
 C:\Users\HaruTzuki\Source\Repos\Greek-Nakama-Upload-System\GreekNakamaTorrentUpload\bin\Debug\GreekNakamaTorrentUpload.exe.config
 C:\Users\HaruTzuki\Source\Repos\Greek-Nakama-Upload-System\GreekNakamaTorrentUpload\obj\Debug\GreekNakamaTorrentUpload.exe
 C:\Users\HaruTzuki\Source\Repos\Greek-Nakama-Upload-System\GreekNakamaTorrentUpload\obj\Debug\GreekNakamaTorrentUpload.pdb
+C:\Users\HaruTzuki\Source\Repos\Greek-Nakama-Upload-System\GreekNakamaTorrentUpload\bin\Debug\Greek-Nakama Upload Tool.exe.config
